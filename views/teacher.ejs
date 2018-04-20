@@ -32,6 +32,19 @@ article {
     padding: 1em;
     overflow: hidden;
 }
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
 </style>
 </head>
 <body>
@@ -49,9 +62,21 @@ article {
 </nav>
 
 <article>
-  <h1>Teacher Page</h1>
-  <p>HACKTIV8 adalah program pemblajaran Full Stack JavaScript immersive pertama di Indonesia. Kurikulum kami dirancang untuk membangun keahlian yang dapat diaplikasikan pada perkembangan dunia teknologi terkini.</p>
-</article>
+    <h1>Teacher Page</h1>
+  
+    <table>
+      <tr>
+        <th>First Name</th>
+        <th>Last Name</th>
+      </tr>
+      <% teachers.forEach(function(teacher){ %>
+          <tr>
+            <td><%- teacher.firstName %></td>
+            <td><%- teacher.lastName %></td>
+          </tr>
+      <% }); %>
+    </table>
+  </article>
 
 <footer>Copyright &copy; W3Schools.com</footer>
 
