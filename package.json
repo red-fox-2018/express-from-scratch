@@ -16,5 +16,9 @@
   "bugs": {
     "url": "https://github.com/red-fox-2018/express-from-scratch/issues"
   },
-  "homepage": "https://github.com/red-fox-2018/express-from-scratch#readme"
+  "homepage": "https://github.com/red-fox-2018/express-from-scratch#readme",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.3"
+  }
 }
