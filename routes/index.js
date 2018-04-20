@@ -3,25 +3,36 @@ const fs = require('fs');
 const express = require('express')
 const router = express.Router()
 
-let studentData = fs.readFileSync('./db/student.json');
-let students = JSON.parse(studentData);
-let teacherData = fs.readFileSync('./db/teacher.json');
-let teachers = JSON.parse(teacherData);
+class FileManager {
+  static read(dbName) {
+    let data = fs.readFileSync(`./db/${dbName}`, 'utf8');
+    return JSON.parse(data);
+  }
+  static justWrite(dbName, listData) {
+    fs.writeFile(`./db/${dbName}`, JSON.stringify(listData));
+  }
+}
 
 router.get('/', (req, res) => {
   res.render('index')
 });
 
 router.get('/student', (req, res) => {
-  // res.send(JSON.parse(studentData));
+  let students = FileManager.read('student.json');
   res.render('student', { students });
 });
 
-// router.post('/student', (req, res) => {
-//   res.render('student');
-// });
+router.post('/student', (req, res) => {
+  let students = FileManager.read('student.json');
+  students.push({ firstName: req.body.firstName, lastName: req.body.lastName })
+  FileManager.justWrite('student.json', students);
+
+  res.redirect('/student');
+});
+
 
 router.get('/teacher', (req, res) => {
+  let teachers = FileManager.read('teacher.json');
   res.render('teacher', { teachers });
 });
 
